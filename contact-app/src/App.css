@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+.App {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+input {
+  width: 100%;
+  padding: 8px 10px;
+  outline: none;
+  border: 0;
+  font-size: 18px;
+  border-radius: 2px;
+  color: #333;
+  margin-top: 6px;
+}
+
+input::placeholder {
+  color: #333;
+  opacity: .6;
+}
+
+button {
+  width: 20%;
+  height: 30px;
+  background-color: transparent;
+  border: 2px solid #333;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.container {
+  background-color: #7fffd4;
+  padding: 20px;
+  width: 480px;
+
+}
+
+#Form {
+  margin-top: 24px;
+}
+
+#Form > div {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0;
+}
+
+#List ul {
+  margin-top: 12px;
+}
+
+#List p {
+  text-align: center;
+  margin-top: 8px;
+}
+
+#List ul li  {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 12px;
+  color: #333;
+  font-size: 18px;
+}

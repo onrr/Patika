@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: #222;
+  width: 90vw;
+  margin: 30px auto;
+  padding: 36px;
+}
+
+.input {
+  margin: 36px 0;
+  text-align: center;
+}
+
+.input > input {
+  background-color: transparent;
+  border: none;
+  color: aliceblue;
+  border: 1px solid aliceblue;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 18px;
+  width: 300px;
+  margin-right: 48px;
+}
+
+.input > label {
+    font-size: 24px;
+    margin-right: 12px;
+}
+
+.input > select {
+  width: 100px;
+  padding: 12px;
+  font-size: 18px;
+  border: 1px solid aliceblue;
+  border-radius: 4px;
+  background-color: transparent;
+  color: aliceblue;
+}
+
+.input > select > option {
+  color: #121212;
+}
+
+div.paragraph {
+  font-size: 18px;
+}

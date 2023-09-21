@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, ul, ol, li, p {
+  margin-bottom: 5px;
+}
+
+.App {
+  width: 90vw;
+  margin: 0 auto;
+  text-align: center;
+  padding: 25px 0;
+}
+
+.header {
+  margin-top: 24px;
+}
+
+.header > button {
+  padding: 12px 24px;
+  font-size: 24px;
+  margin: 24px 0;
+  cursor: pointer;
+  background-color: #FFDD67;
+  box-shadow: 4px 4px #646464;
+}
+
+.content {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content > textarea {
+  min-width: 45%;
+  margin-right: 30px;
+  background-color: #FFDD67;
+  box-shadow: 10px 10px #646464;
+  resize: none;
+  outline: none;
+  border: none;;
+  padding: 20px;
+  font-size: 16px;
+}
+
+.content > .result {
+  min-width: 45%;
+  height: auto;
+  background-color: #FFDD67;
+  box-shadow: 10px 10px #646464;
+  text-align: left;
+  padding: 20px 45px;
+  overflow: auto;
+}
+
+.content > textarea, .content > .result {
+  height: 500px;
+}

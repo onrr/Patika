@@ -1,0 +1,84 @@
+<%- include('partials/_header') -%>
+
+  <!-- Navigation -->
+  <%- include('partials/_navigation') -%>
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Clean Blog</h1>
+              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <% for (let i=0; i < posts.length; i++) { %>
+
+            <div class="post-preview">
+              <a href="/posts/<%= posts[i]._id %>">
+                <h2 class="post-title">
+                  <%= posts[i].title %>
+                </h2>
+                <h3 class="post-subtitle">
+                  <%= posts[i].detail %>
+                </h3>
+              </a>
+              <p class="post-meta">
+                <%= posts[i].dateCreated %>
+              </p>
+            </div>
+            <hr>
+            <% } %>
+              <!-- Pager
+              <div class="clearfix">
+                <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+              </div> -->
+
+              <% if (pages > 0 ) { %>
+                <ul class="pagination">
+                  <% for (i = 1; i <= pages; i++) { %>
+                    <% if (i == current) { %>
+                      <li class="page-item active mx-2">
+                        <a href="/?page=<%= i %>" class="page-link">
+                          <%= i %>
+                        </a>
+                      </li>
+                      <% } else if (i < pages) { %>
+                        <li class="page-item mx-2">
+                          <a href="/?page=<%= i %>" class="page-link">
+                            <%= i %>
+                          </a>
+                        </li>
+                        <% } else { %>
+                          <li class="page-item mx-2">
+                            <a href="/?page=<%= i %>" class="page-link">
+                              >>
+                            </a>
+                          </li>
+                          <% } %>
+                            <% } %>
+
+                </ul>
+                <% } %>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <%- include('partials/_footer') -%>
+
+      </body>
+
+      </html>

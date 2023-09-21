@@ -1,0 +1,78 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  border: 2px solid #22A39F;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+  border-radius: 16px;
+}
+
+.cards {
+  display: flex;
+  margin-top: 12px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 4px 8px 24px;
+  border: 2px dotted #434242;
+  border-radius: 8px;
+  margin: 0 6px;
+}
+
+.card img {
+  width: 140px;
+  height: auto;
+}
+
+.card.current {
+  border: 4px dotted #22A39F;
+}
+
+.temp {
+  display: flex;
+  flex-direction: column;
+}
+
+.cityInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cityInfo h2 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: #434242;
+  margin-left: 12px;
+}
+
+form {
+  width: 400px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 0;
+  border-bottom: 2px solid #434242;;
+}
+input:focus {
+  outline:none;
+}
