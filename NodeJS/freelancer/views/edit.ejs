@@ -1,0 +1,34 @@
+<%- include('partials/_header') -%>
+<section class="page-section" id="contact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase mt-3 mb-5">Edit The Project</h2>
+        </div>
+        <form id="contactForm" method="POST" action="/portfolios/<%= portfolios._id %>?_method=PUT" encType="multipart/form-data">
+            <div class="row align-items-center mb-5" style="flex-direction: column;">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <!-- title input-->
+                        <input class="form-control" id="title" name="title" value="<%= portfolios.title %>"  type="text" required data-sb-validations="required" />
+                        <div class="invalid-feedback" data-sb-feedback="title:required">Project Title</div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3 form-group-textarea">
+                        <!-- Message input-->
+                        <textarea class="form-control" id="description" name="description" required data-sb-validations="required"><%= portfolios.description %></textarea>
+                        <div class="invalid-feedback" data-sb-feedback="description:required">Project Description</div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="file" name="image" class="form-control rounded-0" required >
+                      </div>
+                </div>
+                
+            </div>
+            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Edit This Project</button></div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

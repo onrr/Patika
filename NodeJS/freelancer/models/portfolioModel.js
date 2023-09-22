@@ -5,18 +5,24 @@ const Schema = mongoose.Schema;
 const PortfolioSchema = new Schema({
     title: {
         type: String,
-        require: true
+        required: true,
+        trim: true
     },
     description: {
         type: String,
-        require: true
+        required: true,
+        trim: true
     },
     image: {
         type: String,
-        require: true
-    }
+        required: true
+    },
+    dateCreated: {
+        type: Date,
+        default: Date.now,
+      },
 })
 
-const Portfolio = mongoose.model("Portfolie", PortfolioSchema)
+const Portfolio = mongoose.model("Portfolio", PortfolioSchema)
 
 module.exports = Portfolio;

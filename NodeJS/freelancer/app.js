@@ -5,13 +5,13 @@ const methodOverride = require("method-override")
 const ejs = require("ejs")
 
 const {getAllPortfolios, getPortfolio, createPortfolio, updatePortfolio, deletePortfolio} = require('./controllers/portfolioController')
-const Portfolio = require("../models/portfolioModel")
+const Portfolio = require("./models/portfolioModel")
 
 const app = express()
 
 
 // Connect DB
-mongoose.connect('mongodb://127.0.0.1/agency-db', {
+mongoose.connect('mongodb://127.0.0.1/freelancer-db', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
