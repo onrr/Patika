@@ -2,8 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 
-
 const PageRoutes = require('./routes/PageRoutes')
+const UserRoutes = require('./routes/UserRoutes')
 
 const app = express()
 
@@ -32,6 +32,7 @@ app.use(
 
 // Routes
 app.use('/', PageRoutes);
+app.use('/users', UserRoutes);
 
 
 const PORT = 5000

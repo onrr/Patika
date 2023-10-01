@@ -1,18 +1,17 @@
 const Course = require('../models/CourseModel');
 
-const getIndexPage = async (req, res) => {
-  
-  const courses = await Course.find().sort('-createdAt').limit(2);
-
+const getIndexPage = (req, res) => {
   res.status(200).render('index', {
     page_name: 'index',
-    courses,
   });
 };
 
-const getAboutPage = (req, res) => {
-  res.status(200).render('about', {
-    page_name: 'about',
+const getCoursesPage = async (req, res) => {
+  const courses = await Course.find().sort('-createdAt').limit(2);
+  
+  res.status(200).render('courses', {
+    page_name: 'courses',
+    courses
   });
 };
 
@@ -33,4 +32,18 @@ const getContactPage = (req, res) => {
     page_name: 'contact',
   });
 };
-module.exports = {getIndexPage, getAboutPage, getTrainerPage, getGalleryPage, getContactPage}
+
+const getRegisterPage = (req, res) => {
+  res.status(200).render('register', {
+    page_name: 'register',
+  });
+};
+
+const getLoginPage = (req, res) => {
+  res.status(200).render('login', {
+    page_name: 'login',
+  });
+};
+
+
+module.exports = {getIndexPage, getCoursesPage, getTrainerPage, getGalleryPage, getContactPage, getLoginPage, getRegisterPage}
