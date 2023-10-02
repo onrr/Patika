@@ -1,6 +1,7 @@
 const Course = require('../models/CourseModel');
 
 const getIndexPage = (req, res) => {
+  console.log(req.session.userID)
   res.status(200).render('index', {
     page_name: 'index',
   });

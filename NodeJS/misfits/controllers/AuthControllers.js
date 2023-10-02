@@ -22,7 +22,8 @@ const loginUser = async (req, res) => {
         if (user) {
             bcrypt.compare(password, user.password, (err, same) => {
                 if (same) {
-
+                    // User Session
+                    req.session.userID = user._id
                     res.status(200).redirect('/');
                 } else {
                     res.status(400).redirect('/login');
@@ -39,4 +40,10 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = { createUser, loginUser }
+const logoutUser = async (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/')
+    })
+}
+
+module.exports = { createUser, loginUser, logoutUser }
