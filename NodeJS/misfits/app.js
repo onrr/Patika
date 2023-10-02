@@ -4,6 +4,7 @@ const methodOverride = require('method-override')
 
 const PageRoutes = require('./routes/PageRoutes')
 const UserRoutes = require('./routes/UserRoutes')
+const CourseRoutes = require('./routes/CourseRoutes')
 
 const app = express()
 
@@ -22,6 +23,7 @@ app.set('view engine', 'ejs')
 
 // Middlewares
 app.use(express.static('public'))
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(
     methodOverride('_method', {
@@ -33,6 +35,7 @@ app.use(
 // Routes
 app.use('/', PageRoutes);
 app.use('/users', UserRoutes);
+app.use('/courses', CourseRoutes);
 
 
 const PORT = 5000
