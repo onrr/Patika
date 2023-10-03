@@ -8,7 +8,7 @@ const getIndexPage = (req, res) => {
 };
 
 const getCoursesPage = async (req, res) => {
-  const courses = await Course.find().sort('-createdAt').limit(2);
+  const courses = await Course.find().sort('-createdAt');
   
   res.status(200).render('courses', {
     page_name: 'courses',

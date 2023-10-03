@@ -38,33 +38,35 @@
                            <li class="nav-item <%= page_name === 'trainer' && 'active' %>">
                               <a class="nav-link" href="/trainer">Trainer</a>
                            </li>
-                           <li class="nav-item <%= page_name === 'gallery' && 'active' %>">
-                              <a class="nav-link" href="/gallery">Gallery</a>
-                           </li>
                            <li class="nav-item <%= page_name === 'contact' && 'active' %>">
                               <a class="nav-link" href="/contact">Contact Us</a>
                            </li>
-
-                           <% if(!userIN) { %>
-                              <li class="nav-item <%= page_name === 'login' && 'active' %>">
-                                 <a class="nav-link" href="/login">
-                                    <i class="fa-solid fa-right-to-bracket"></i> Login
-                                 </a>
-                              </li>
-                              <li class="nav-item <%= page_name === 'register' && 'active' %>">
-                                 <a class="nav-link" href="/register">
-                                    <i class="fa-solid fa-user-plus"></i> Register
-                                 </a>
+                           <% if(userIN) { %>
+                              <li class="nav-item <%= page_name === 'profile' && 'active' %>">
+                                 <a class="nav-link" href="/users/profile">Profile</a>
                               </li>
                               <% } %>
 
-                                 <% if(userIN) { %>
-                                    <li class="nav-item">
-                                       <a class="nav-link" href="/users/logout">
-                                          <i class="fa-solid fa-right-from-bracket"></i> Logout
+                                 <% if(!userIN) { %>
+                                    <li class="nav-item <%= page_name === 'login' && 'active' %>">
+                                       <a class="nav-link" href="/login">
+                                          <i class="fa-solid fa-right-to-bracket"></i> Login
+                                       </a>
+                                    </li>
+                                    <li class="nav-item <%= page_name === 'register' && 'active' %>">
+                                       <a class="nav-link" href="/register">
+                                          <i class="fa-solid fa-user-plus"></i> Register
                                        </a>
                                     </li>
                                     <% } %>
+
+                                       <% if(userIN) { %>
+                                          <li class="nav-item">
+                                             <a class="nav-link" href="/users/logout">
+                                                <i class="fa-solid fa-right-from-bracket"></i> Logout
+                                             </a>
+                                          </li>
+                                          <% } %>
 
                         </ul>
                      </div>

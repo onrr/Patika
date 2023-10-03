@@ -16,22 +16,53 @@
                     <div class="col-lg-9 blog-post-single">
                         <div class="blog-item">
                             <div class="image-blog">
-                                <img src="images/blog_single.jpg" alt="" class="img-fluid">
+                                <img src="/images/tra0.jpg"
+                                    style="width: 600px; height: auto; display: block; margin: 0 auto;"
+                                    class="img-fluid">
                             </div>
                             <div class="post-content">
-                                <div class="meta-info-blog">
-                                    <span><i class="fa fa-calendar"></i> <a href="#"><%= course.createdAt %></a> </span>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="meta-info-blog">
+                                            <span><i class="fa fa-calendar"></i>
+                                                <%= course.createdAt %>
+                                            </span>
+                                        </div>
+                                        <div class="blog-title">
+                                            <h2>
+                                                <%= course.name %>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                    <% if (user && !(user.courses.includes(course._id))) { %>
+                                        <form method="POST" action="/courses/enroll">
+                                            <input type="hidden" name="course_id" value="<%= course._id %>">
+                                            <button class="btn btn-lg btn-warning text-white">
+                                                <span>ENROLL</span>
+                                            </button>
+                                        </form>
+                                        <% } %>
+                                            <% if (user && user.courses.includes(course._id)) { %>
+                                                <form method="POST" action="/courses/release">
+                                                    <input type="hidden" name="course_id"
+                                                        value="<%= course._id %>">
+                                                    <button class="btn btn-lg btn-danger text-white">
+                                                        <span>RELEASE</span>
+                                                    </button>
+                                                </form>
+                                                <% } %>
                                 </div>
-                                <div class="blog-title">
-                                    <h2><a href="#" title="">
-                                            <%= course.name %>
-                                        </a></h2>
+                                <div class="blog-title d-flex align-items-center">
+                                    <i class="fa fa-user pb-1 mr-2" aria-hidden="true"></i>
+                                    <h2 class="font-italic">
+                                        <%= course.user.name %>
+                                    </h2>
                                 </div>
                                 <div class="blog-desc">
 
-                                    <blockquote class="default">
+                                    <p class="default">
                                         <%= course.description %>
-                                    </blockquote>
+                                    </p>
 
                                 </div>
                             </div>

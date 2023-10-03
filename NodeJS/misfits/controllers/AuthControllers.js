@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 
 const User = require('../models/UserModel');
+const Course = require('../models/CourseModel')
 
 const createUser = async (req, res) => {
     try {
@@ -24,7 +25,7 @@ const loginUser = async (req, res) => {
                 if (same) {
                     // User Session
                     req.session.userID = user._id
-                    res.status(200).redirect('/');
+                    res.status(200).redirect('/users/profile');
                 } else {
                     res.status(400).redirect('/login');
                 }
@@ -46,4 +47,15 @@ const logoutUser = async (req, res) => {
     })
 }
 
-module.exports = { createUser, loginUser, logoutUser }
+const getProfile = async (req, res) => {
+    const user = await User.findOne({ _id: req.session.userID }).populate('courses')
+    const courses = await Course.find({user:req.session.userID})
+
+    res.status(200).render('profile', {
+        page_name: 'profile',
+        user,
+        courses
+    })
+}
+
+module.exports = { createUser, loginUser, logoutUser, getProfile }
