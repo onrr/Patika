@@ -34,6 +34,7 @@
                                             </h2>
                                         </div>
                                     </div>
+                                    <% if (user && user.role === 'student') { %>
                                     <% if (user && !(user.courses.includes(course._id))) { %>
                                         <form method="POST" action="/courses/enroll">
                                             <input type="hidden" name="course_id" value="<%= course._id %>">
@@ -50,6 +51,7 @@
                                                         <span>RELEASE</span>
                                                     </button>
                                                 </form>
+                                                <% } %>
                                                 <% } %>
                                 </div>
                                 <div class="blog-title d-flex align-items-center">

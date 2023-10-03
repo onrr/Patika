@@ -110,69 +110,144 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="course-item mb-5">
                                     <div class="image-blog">
-                                        <img src="/images/banner3.jpg" alt="" class="img-fluid">
+                                        <img src="/images/tra0.jpg" style="width: 600px;" alt="" class="img-fluid">
                                     </div>
-                                    <div class="course-br">
-                                        <div class="course-title mt-3">
-                                            <h2><a href="/courses/<%= courses[i].slug %>" title="">
-                                                    <%= courses[i].name %>
-                                                </a></h2>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="course-br">
+                                            <div class="course-title mt-3">
+                                                <h2><a href="/courses/<%= courses[i].slug %>" title="">
+                                                        <%= courses[i].name %>
+                                                    </a></h2>
+                                            </div>
+                                            <div class="course-desc">
+                                                <p>
+                                                    <%= courses[i].description %>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="course-desc">
-                                            <p>
-                                                <%= courses[i].description %>
-                                            </p>
+                                        <div class="course-br d-flex align-items-center  mt-3 mr-1">
+                                            <div class="course-title mr-2">
+                                                <a href="/courses/<%= courses[i].slug %>?_method=DELETE"
+                                                    class="btn btn-md btn-danger text-white"
+                                                    onclick="return confirm('Are You Sure?')"><i
+                                                        class="fa-solid fa-trash"></i></a>
+                                            </div>
+                                            <div class="course-desc">
+                                                <button class="btn btn-md btn-warning text-white" data-toggle="modal"
+                                                    data-target="#updateCourse<%= courses[i]._id %>"><i
+                                                        class="fa-solid fa-pen"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <!-- UPDATE Modal -->
+                                        <div class="modal fade" id="updateCourse<%= courses[i]._id %>" tabindex="-1"
+                                            role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body customer-box">
+                                                        <!-- Tab panes -->
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane active" id="Login">
+                                                                <form method="POST"
+                                                                    action="/courses/<%= courses[i].slug %>?_method=PUT"
+                                                                    class="form-horizontal">
+                                                                    <div class="form-group container">
+                                                                        <div class="col-sm-12 mb-2">
+                                                                            <input type="text" name="name"
+                                                                                class="form-control"
+                                                                                value="<%= courses[i].name %>"
+                                                                                placeholder="Course Name">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="col-sm-12">
+                                                                                <input type="hidden" name="role"
+                                                                                    class="form-control"
+                                                                                    value="<%= user.role %>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="col-sm-12">
+                                                                                    <textarea rows="8"
+                                                                                        name="description"
+                                                                                        class="form-control"
+                                                                                        placeholder="Course Description"
+                                                                                        required>
+                                                                                        <%= courses[i].description %></textarea>
+                                                                                </div>
+                                                                                <div class="row mt-3 pl-3">
+                                                                                    <div class="col-sm-12 d-flex">
+                                                                                        <button type="submit"
+                                                                                            class="btn btn-light btn-radius btn-brd grd1">
+                                                                                            UPDATE
+                                                                                        </button>
+                                                                                        <button type="submit"
+                                                                                            class="btn btn-light btn-radius btn-brd grd1"
+                                                                                            data-dismiss="modal"
+                                                                                            aria-hidden="true">
+                                                                                            Cancel
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div><!-- end col -->
                             <% } %>
-                            <% if (user.role === 'student') { %>
-                                <div class="col-12">
-                                <h3>Courses Enrolled (<%= user.courses.length  %>)</h3>
-                                <% for (let i=0; i < user.courses.length; i++) { %>
-                                    <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="course-item mb-5">
-                                                <div class="image-blog">
-                                                    <img src="/images/tra0.jpg" alt="" style="width: 600px;" class="img-fluid">
-                                                </div>
-                                                <div class="course-br d-flex align-items-center justify-content-between">
-                                                    <div>
-                                                        <div class="course-title mt-3">
-                                                            <h2><a href="/courses/<%= user.courses[i].slug %>" title="">
-                                                                    <%= user.courses[i].name %>
-                                                                </a></h2>
-                                                        </div>
-                                                        <div class="course-desc">
-                                                            <p>
-                                                                <%= user.courses[i].description %>
-                                                            </p>
-                                                        </div>
+                                <div class="row mt-5">
+                                    <% if (user.role==='student' ) { %>
+                                        <h3>Courses Enrolled (<%= user.courses.length %>)</h3>
+                                        <% for (let i=0; i < user.courses.length; i++) { %>
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="course-item mb-5">
+                                                    <div class="image-blog">
+                                                        <img src="/images/tra0.jpg" alt="" style="width: 600px;"
+                                                            class="img-fluid">
                                                     </div>
-                                                    <form method="POST" action="/courses/release">
-                                                        <input type="hidden" name="course_id" value="<%= user.courses[i]._id %>">
-                                                        <button class="btn btn-lg btn-danger text-white">
-                                                            <span>RELEASE</span>
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                    <div
+                                                        class="course-br d-flex align-items-center justify-content-between">
+                                                        <div>
+                                                            <div class="course-title mt-3">
+                                                                <h2><a href="/courses/<%= user.courses[i].slug %>"
+                                                                        title="">
+                                                                        <%= user.courses[i].name %>
+                                                                    </a></h2>
+                                                            </div>
+                                                            <div class="course-desc">
+                                                                <p>
+                                                                    <%= user.courses[i].description %>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <form method="POST" action="/courses/release">
+                                                            <input type="hidden" name="course_id"
+                                                                value="<%= user.courses[i]._id %>">
+                                                            <button class="btn btn-lg btn-danger text-white">
+                                                                <span>RELEASE</span>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div><!-- end col -->
+                                                <% } %>
+                                                    <% } %>
                                             </div>
-                                        </div>
-                                </div><!-- end col -->
-                                <% } %>
-                            </div>
-                                <% } %>
-                    </div><!-- end row -->
-                </div><!-- end container -->
-            </div><!-- end section -->
-            <% } %>
+                                </div><!-- end row -->
+                    </div><!-- end container -->
+                </div><!-- end section -->
+                <% } %>
 
-                <% if (!user) { %>
-                    <div class="mt-5">
-                        <h1 class="text-center display-4">NO ACCESS</h1>
-                    </div>
+                    <% if (!user) { %>
+                        <div class="mt-5">
+                            <h1 class="text-center display-4">NO ACCESS</h1>
+                        </div>
 
-                    <% } %>
+                        <% } %>
 
-                        <%- include('partials/_footer'); %>
+                            <%- include('partials/_footer'); %>
