@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const flash = require('connect-flash')
 
 const PageRoutes = require('./routes/PageRoutes')
 const UserRoutes = require('./routes/UserRoutes')
@@ -41,6 +42,11 @@ app.use(session({
   saveUninitialized: true,
   store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1/misfits-db' })
 }))
+app.use(flash())
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash()
+  next()
+})
 
 
 

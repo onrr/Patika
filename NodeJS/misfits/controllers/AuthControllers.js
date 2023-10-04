@@ -7,17 +7,17 @@ const createUser = async (req, res) => {
     try {
         await User.create(req.body);
 
+        req.flash("success", "User created. Please log in")
         res.status(201).redirect('/login');
     } catch (error) {
-        console.log(error)
-
+        req.flash("error", "An error occurred while creating the user. Please try again.")
         res.status(400).redirect('/register');
     }
 };
 
 const loginUser = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { name, email, password } = req.body;
 
         const user = await User.findOne({ email });
         if (user) {
@@ -25,19 +25,20 @@ const loginUser = async (req, res) => {
                 if (same) {
                     // User Session
                     req.session.userID = user._id
+                    req.flash("success", `${user.name}, Welcome`)
                     res.status(200).redirect('/users/profile');
                 } else {
+                    req.flash("error", "Incorrect your e-mail or password")
                     res.status(400).redirect('/login');
                 }
             });
         } else {
+            req.flash("error", "Incorrect your e-mail or password")
             res.status(400).redirect('/login');
         }
     } catch (error) {
-        res.status(400).json({
-            status: 'fail',
-            error,
-        });
+        req.flash("error", `Something Wrong...: ${error}`)
+        res.status(400).redirect('/login');
     }
 };
 

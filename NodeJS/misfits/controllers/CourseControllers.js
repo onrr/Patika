@@ -5,7 +5,23 @@ const User = require('../models/UserModel');
 const getAllCourses = async (req, res) => {
 
     try {
-        const courses = await Course.find()
+        
+        const keywords = req.query.search
+        
+        let filter = {}
+        if (keywords) {
+            filter = {name: keywords}
+        }
+        if (!keywords) {
+            filter.name = ""
+        }
+        
+        const courses = await Course.find({
+            $or: [
+                {name: { $regex: '.*' + filter.name + '.*', $options: 'i'}}
+            ]
+        }).sort('-createdAt').populate('user')
+
         res.status(200).render('courses', {
             courses,
             page_name: 'courses',
@@ -46,12 +62,12 @@ const createCourse = async (req, res) => {
             user: req.session.userID
         });
 
+        req.flash("success", `${course.name} has been created successfully`)
+
         res.status(201).redirect('/users/profile')
     } catch (error) {
-        res.status(400).json({
-            status: 'fail',
-            error,
-        });
+        req.flash("error", `Something Wrong...: ${error}`)
+        res.status(400).redirect('/users/profile')
     }
 };
 
@@ -61,13 +77,12 @@ const enrollCourse = async (req, res) => {
         await user.courses.push({ _id: req.body.course_id })
         await user.save()
 
+        req.flash("success", `Successfully enrolled in the course`)
         res.status(200).redirect('/users/profile')
 
     } catch (error) {
-        res.status(400).json({
-            status: 'fail',
-            error
-        })
+        req.flash("error", `An error occurred while enrolled in the course.`)
+        res.status(400).redirect('/courses')
     }
 }
 
@@ -77,13 +92,12 @@ const releaseCourse = async (req, res) => {
         await user.courses.pull({ _id: req.body.course_id })
         await user.save()
 
+        req.flash("success", `Successfully released the course`)
         res.status(200).redirect('/users/profile')
 
     } catch (error) {
-        res.status(400).json({
-            status: 'fail',
-            error
-        })
+        req.flash("error", `An error occurred while enrolled for the course.`)
+        res.status(400).redirect('/users/profile')
     }
 }
 
